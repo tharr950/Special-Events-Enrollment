@@ -158,7 +158,7 @@ def apply_dark_theme(fig):
 # ── Data loading ──────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data.csv", low_memory=False)
+    df = pd.read_csv("Data.csv", low_memory=False)
 
     # Normalize column names (strip whitespace)
     df.columns = df.columns.str.strip()
