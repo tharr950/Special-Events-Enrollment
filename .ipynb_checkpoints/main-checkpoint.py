@@ -161,7 +161,7 @@ def load_data():
     import os
     # Resolve path relative to this script file — works on Streamlit Community Cloud
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    data_path = os.path.join(script_dir, "data.csv")
+    data_path = os.path.join(script_dir, "Data.csv")
     df = pd.read_csv(data_path, low_memory=False)
 
     # Normalize column names (strip whitespace)
