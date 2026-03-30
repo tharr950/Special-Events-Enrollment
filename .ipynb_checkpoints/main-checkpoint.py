@@ -158,7 +158,11 @@ def apply_dark_theme(fig):
 # ── Data loading ──────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data.csv", low_memory=False)
+    import os
+    # Resolve path relative to this script file — works on Streamlit Community Cloud
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(script_dir, "data.csv")
+    df = pd.read_csv(data_path, low_memory=False)
 
     # Normalize column names (strip whitespace)
     df.columns = df.columns.str.strip()
@@ -203,8 +207,8 @@ st.markdown("""
 # Load
 try:
     raw = load_data()
-except FileNotFoundError:
-    st.error("⚠️ `data.csv` not found. Place it in the same directory as this script and rerun.")
+except FileNotFoundError as e:
+    st.error(f"⚠️ `data.csv` not found. Error: {e}")
     st.stop()
 
 raw = assign_period(raw)
